@@ -1,3 +1,4 @@
+import unittest
 from unittest import TestCase
 
 from ciphers.cesar import CesarCipher
@@ -15,3 +16,8 @@ class CesarTest(TestCase):
         clear = cipher.decrypt('Dmfbs ufyu')
 
         self.assertEqual(clear, 'CLEAR TEXT')
+
+
+
+if __name__ == '__main__':
+    unittest.main()
