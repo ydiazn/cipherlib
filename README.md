@@ -1,0 +1,1 @@
+Library of ciphers for didactic purposes
