@@ -6,7 +6,7 @@ import pyperclip, sys, random
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def main():
-    myMessage = 'Xavier'
+    myMessage = 'Xavier Joao, Esta é uma informação para a familia Beatriz.'
 
     myKey = 'LFWOAYUISVKMNXPBDCRJTQEGHZ'
     myMode = 'encrypt' # set to 'encrypt' or 'decrypt'
