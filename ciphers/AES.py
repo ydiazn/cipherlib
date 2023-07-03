@@ -11,3 +11,8 @@ class AESCipher:
         ciphertext = cipher.encrypt(pad(plaintext, AES.block_size))
         return cipher.iv + ciphertext
 
+    def decrypt(self, ciphertext):
+        iv = ciphertext[:AES.block_size]
+        cipher = AES.new(self.key, AES.MODE_CBC, iv)
+        plaintext = unpad(cipher.decrypt(ciphertext[AES.block_size:]), AES.block_size)
+        return plaintext
