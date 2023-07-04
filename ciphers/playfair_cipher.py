@@ -1,4 +1,4 @@
-from base import BaseCipher
+from .base import BaseCipher
 
 
 class PlayFairCipher(BaseCipher):
