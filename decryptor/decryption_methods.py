@@ -18,3 +18,9 @@ def decrypt_with_transposition(message):
         print(decrypted_message)
     else:
         print("Falha ao decifrar a mensagem usando a Cifra de Transposição.")
+
+
+def decrypt_message(message):
+    decrypt_with_affine(message)
+    print("-----------------------------------")
+    decrypt_with_transposition(message)
