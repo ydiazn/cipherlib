@@ -1,20 +1,6 @@
 import unittest
-import sys
-import os
-
-# Adicionar o diretório "ciphers" ao sys.path
-current_dir = os.path.dirname(os.path.abspath(__file__))
-ciphers_dir = os.path.join(current_dir, '..', 'ciphers')
-sys.path.append(ciphers_dir)
-
-# Importar o módulo AESCipher
-
-
-from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
-from Crypto.Util.Padding import pad, unpad
-
-from AES import AESCipher
+from ciphers.AES import AESCipher
 
 
 class AESCipherTests(unittest.TestCase):
