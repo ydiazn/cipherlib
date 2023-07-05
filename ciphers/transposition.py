@@ -41,7 +41,7 @@ class TranspositionCipher:
         
         numOfRows = self.key
 
-        numOfShadedBoxes = (numOfColumns * numOfRows) - len(text)q
+        numOfShadedBoxes = (numOfColumns * numOfRows) - len(text)
 
         plaintext = [''] * numOfColumns
 
