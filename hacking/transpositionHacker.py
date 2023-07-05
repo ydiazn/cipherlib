@@ -1,14 +1,14 @@
 # Transposition Cipher Hacker
 # http://inventwithpython.com/hacking (BSD Licensed)
 
-from ciphers import transpositionDecrypt
+from ciphers.transposition import TranspositionCipher
 from utils import detectEnglish, pyperclip
 
 
 def main():
     # You might want to copy & paste this text from the source code at
     # http://invpy.com/transpositionHacker.py
-    myMessage = "hdello worl"
+    myMessage = input("Insira a mensagem criptografada: ") #"hdello worl"
     hackedMessage = hackTransposition(myMessage)
 
     if hackedMessage == None:
@@ -17,7 +17,6 @@ def main():
         print('Copying hacked message to clipboard:')
         print(hackedMessage)
         pyperclip.copy(hackedMessage)
-
 
 def hackTransposition(message):
     print('Hacking...')
@@ -30,7 +29,8 @@ def hackTransposition(message):
     for key in range(1, len(message)):
         print('Trying key #%s...' % (key))
 
-        decryptedText = transpositionDecrypt.decryptMessage(key, message)
+        cipher = TranspositionCipher(key)
+        decryptedText = cipher.decrypt(message)
 
         if detectEnglish.isEnglish(decryptedText):
             # Check with user to see if the decrypted key has been found.
