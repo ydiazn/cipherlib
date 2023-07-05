@@ -1,0 +1,3 @@
+# AES Cipher Wrapper
+# To use the AES cipher wrapper, install the pycryptodome library.
+pycryptodome==3.18.0
