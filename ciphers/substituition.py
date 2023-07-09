@@ -1,78 +1,40 @@
-# Simple Substitution Cipher
-# http://inventwithpython.com/hacking (BSD Licensed)
+# Simple Substituition Cipher
 
-import pyperclip, sys, random
+from .base import BaseCipher
 
-LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+class SimpleSubstitutionCipher(BaseCipher):
+    def __init__(self, key):
+        """Initialize instance.
+        Args:
+            key (str): secret key
+        """
+        self.key = key.upper()
+        self.key_map = self.generate_key_map()
 
-def main():
-    myMessage = 'Xavier Joao, Esta é uma informação para a familia Beatriz.'
+    def generate_key_map(self):
+        """Generate a mapping for the key."""
+        key_map = {}
+        for i, letter in enumerate(self.key):
+            key_map[letter] = chr(ord('A') + i)
+        return key_map
 
-    myKey = 'LFWOAYUISVKMNXPBDCRJTQEGHZ'
-    myMode = 'encrypt' # set to 'encrypt' or 'decrypt'
+    def transform(self, text, encrypt=True):
+        text = text.upper()
+        transformed = ''
 
-    checkValidKey(myKey)
-
-    if myMode == 'encrypt':
-        translated = encryptMessage(myKey, myMessage)
-       #print(translated)
-    elif myMode == 'decrypt':
-        translated = decryptMessage(myKey, myMessage)
-    print('Using key %s' % (myKey))
-    print('The %sed message is:' % (myMode))
-    print(translated)
-    pyperclip.copy(translated)
-    print()
-    print('This message has been copied to the clipboard.')
-
-def checkValidKey(key):
-    keyList = list(key)
-    lettersList = list(LETTERS)
-    keyList.sort()
-    lettersList.sort()
-
-    if keyList != lettersList:
-        sys.exit('There is an error in the key or symbol set.')
-
-
-def encryptMessage(key, message):
-    return translateMessage(key, message, 'encrypt')
-
-def decryptMessage(key, message):
-    return translateMessage(key, message, 'decrypt')
-
-
-def translateMessage(key, message, mode):
-    translated = ''
-    charsA = LETTERS
-    charsB = key
-    if mode == 'encrypt':
-        # For decrypting, we can use the same code as encrypting. We
-        # just need to swap where the key and LETTERS strings are used.
-        charsA, charsB = charsB, charsA
-
-
-     # loop through each symbol in the message
-    for symbol in message:
-        if symbol.upper() in charsA:
-            # encrypt/decrypt the symbol
-            symIndex = charsA.find(symbol.upper())
-            if symbol.isupper():
-                translated += charsB[symIndex].upper()
+        for symbol in text:
+            if symbol.isalpha():
+                if encrypt:
+                    transformed += self.key_map.get(symbol, symbol)
+                else:
+                    transformed += list(self.key_map.keys())[list(self.key_map.values()).index(symbol)]
             else:
-                translated += charsB[symIndex].lower()
-        else:
-        # symbol is not in LETTERS, just add it
-             translated += symbol
-    return translated
+                transformed += symbol
 
+        return transformed
 
-def getRandomKey():
-    key = list(LETTERS)
-    random.shuffle(key)
-    return ''.join(key)
+    def encrypt(self, text):
+        return self.transform(text, encrypt=True)
 
-
-if __name__ == '__main__':
-    main()
-    
+    def decrypt(self, text):
+        return self.transform(text, encrypt=False)
