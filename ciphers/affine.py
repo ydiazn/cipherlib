@@ -14,7 +14,7 @@ class AffineCipher(BaseCipher):
     def __init__(self):
         self.myMessage = """"f-T))h<RhH)?"""
         self.myKey = 2023
-        self.myMode = 'encrypt'  # set to 'encrypt' or 'decrypt'
+        self.myMode = 'decrypt'  # set to 'encrypt' or 'decrypt'
 
     def main(self):
         if self.myMode == 'encrypt':

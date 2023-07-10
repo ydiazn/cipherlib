@@ -1,4 +1,4 @@
-from hacking import transpositionHacker, affineHacker, vigenereHacker
+from hacking import transpositionHacker, caesarHacker, affineHacker, vigenereHacker
 
 def decrypt_with_transposition(message):
     print("Decifrando usando a Cifra de Transposição...")
@@ -9,7 +9,7 @@ def decrypt_with_transposition(message):
     else:
         print("Falha ao decifrar a mensagem usando a Cifra de Transposição.")
 
-def decrypt_with_affine(message):
+'''def decrypt_with_affine(message):
     print("Decifrando usando a Cifra de Afine...")
     decrypted_message = affineHacker.hackAffine(message)
     if decrypted_message is not None:
@@ -26,11 +26,11 @@ def decrypt_with_vigenere(message):
         print("Mensagem decifrada usando a Cifra de Vigenere:")
         print(decrypted_message)
     else:
-        print("Falha ao decifrar a mensagem usando a Cifra de Vigenere.")
+        print("Falha ao decifrar a mensagem usando a Cifra de Vigenere.")'''
 
 def decrypt_message(message):
     decrypt_with_transposition(message)
     print("-----------------------------------")
-    decrypt_with_affine(message)
+    '''decrypt_with_affine(message)
     print("-----------------------------------")
-    decrypt_with_vigenere(message)
+    decrypt_with_vigenere(message)'''
