@@ -7,11 +7,16 @@
 # (There must be a "dictionary.txt" file in this directory with all English
 # words in it, one word per line. You can download this from
 # http://invpy.com/dictionary.txt)
+import os 
+
 UPPERLETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \t\n'
 
+current_directory = os.path.dirname(os.path.abspath(__file__))
+dictionary_path = os.path.join(current_directory, 'dictionary.txt')
+
 def loadDictionary():
-    dictionaryFile = open('C:/Users/Justin/Desktop/DecryptorAtualizado/utils/dictionary.txt')
+    dictionaryFile = open(dictionary_path)
     englishWords = {}
     for word in dictionaryFile.read().split('\n'):
         englishWords[word] = None
