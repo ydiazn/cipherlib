@@ -1,14 +1,6 @@
 from .base import BaseCipher
 
 class OneTimePadCipher(BaseCipher):
-    
-    def generate_key(self, message_length):
-        """Gera uma chave aleatória do mesmo tamanho da mensagem"""
-        letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        key = [random.choice(letters) for _ in range(message_length)]
-    return key
-
-class OneTimePadCipher(BaseCipher(key)):
     def __init__(self):
         self.key = self.generate_key(10)
 
@@ -31,9 +23,10 @@ class OneTimePadCipher(BaseCipher(key)):
                 encrypted_symbol = chr(new_index + ord('A'))
                 transformed += encrypted_symbol
 
+        return transformed
+
     def encrypt(self, text):
         return self.transform(text, self.key)
 
     def decrypt(self, text):
         return self.transform(text, self.key)
-
